@@ -1,0 +1,10 @@
+vCenter_creds:
+    "datacenter" : "CRVS-Datacenter"
+    "cluster" :
+    "datastore" :
+mysql:
+    "host" : 192.168.122.48
+    "user" : "root"
+    "password" : "Sungard01!"
+    "database" : "apptest"
+    "input_range" : 100000   
