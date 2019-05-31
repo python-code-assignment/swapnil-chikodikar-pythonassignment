@@ -1,18 +1,57 @@
-connection created
-connection created
-Process Process-1:
-Traceback (most recent call last):
-  File "/usr/lib64/python2.7/multiprocessing/process.py", line 258, in _bootstrap
-connection created
-    self.run()
-  File "/usr/lib64/python2.7/multiprocessing/process.py", line 114, in run
-    self._target(*self._args, **self._kwargs)
-TypeError: run() takes exactly 2 arguments (54 given)
-connection created
-Process Process-2:
-Traceback (most recent call last):
-  File "/usr/lib64/python2.7/multiprocessing/process.py", line 258, in _bootstrap
-    self.run()
-  File "/usr/lib64/python2.7/multiprocessing/process.py", line 114, in run
-    self._target(*self._args, **self._kwargs)
-TypeError: run() takes exactly 2 arguments (54 given)
+"StackResourceSummaries" = [
+
+            {
+
+                "ResourceStatus": "CREATE_COMPLETE",
+
+                "DriftInformation": {
+
+                "StackResourceDriftStatus": "NOT_CHECKED"
+
+                },
+
+                "ResourceType": "AWS::IAM::Role",
+
+                "LastUpdatedTimestamp": "2019-02-28T07:44:06.181Z",
+
+                "PhysicalResourceId": "GetAMIId-ExecutionRole-2KKNA2L0E0AR",
+
+                "LogicalResourceId": "ExecutionRole"
+
+            },
+
+            {
+
+                "ResourceStatus": "CREATE_COMPLETE",
+
+                "DriftInformation": {
+
+                    "StackResourceDriftStatus": "NOT_CHECKED"
+
+                },
+
+                "ResourceType": "AWS::Lambda::Function",
+
+                "LastUpdatedTimestamp": "2019-02-28T07:44:09.587Z",
+
+                "PhysicalResourceId": "GetAMIId",
+
+                "LogicalResourceId": "Lambda"
+
+            }
+
+        ]
+
+for x in StackResourceSummaries:
+
+    for item in x.items():
+
+        if item["ResourceType"] is "AWS::Lambda::Function":
+
+            print item
+
+           
+
+for x in StackResourceSummaries:
+
+    print x if ("ResourceType": "AWS::Lambda::Function") in x.items()
