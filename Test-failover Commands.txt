@@ -1,0 +1,46 @@
+strisores-cli stop-failover --organization-id 58d66903-13be-4a83-be6e-e12e0dc83134 --group-id d21e73fa-e366-4409-a1b1-65c4a9f1ea93_yt8nprod_group_QA-auto  --failover-job-id 7c691c7b-f507-4460-84bb-8270a579b5eb
+###################Stop Test failover
+strisores-cli stop-failover --organization-id 58d66903-13be-4a83-be6e-e12e0dc83134 --group-id 58d66903-13be-4a83-be6e-e12e0dc83134_crvssla_group_sla-AD --failover-job-id 796c1466-c6f0-448b-9aea-2c1b4a3704d6
+strisores-cli stop-failover --organization-id 58d66903-13be-4a83-be6e-e12e0dc83134 --group-id 58d66903-13be-4a83-be6e-e12e0dc83134_crvssla_group_sla-DB-lin --failover-job-id 44bfae19-5aa6-435a-af93-e001601abb56
+strisores-cli stop-failover --organization-id 58d66903-13be-4a83-be6e-e12e0dc83134 --group-id 58d66903-13be-4a83-be6e-e12e0dc83134_crvssla_group_sla-DB-win --failover-job-id dd43349a-6764-419f-b725-7886210ecce8
+strisores-cli stop-failover --organization-id 58d66903-13be-4a83-be6e-e12e0dc83134 --group-id 58d66903-13be-4a83-be6e-e12e0dc83134_crvssla_group_sla-Multi-Nics --failover-job-id ef114795-1d94-488b-8a7b-c3a489bc4827
+strisores-cli stop-failover --organization-id 58d66903-13be-4a83-be6e-e12e0dc83134 --group-id 58d66903-13be-4a83-be6e-e12e0dc83134_crvssla_group_sla-Plain-lin --failover-job-id c4fbd2cf-fa73-4bf6-80ac-cbeb1ec6098f
+strisores-cli stop-failover --organization-id 58d66903-13be-4a83-be6e-e12e0dc83134 --group-id 58d66903-13be-4a83-be6e-e12e0dc83134_crvssla_group_sla-Plain-win --failover-job-id ac0ce331-d7a2-41b1-b4c5-ab21374c9a30
+
+##################### Start Test failover
+strisores-cli create-test-failover-job --organization-id 58d66903-13be-4a83-be6e-e12e0dc83134 --group-id 58d66903-13be-4a83-be6e-e12e0dc83134_crvssla_group_sla-AD --type SGAS_IV --checkpoint-id 12791757
+strisores-cli create-test-failover-job --organization-id 58d66903-13be-4a83-be6e-e12e0dc83134 --group-id 58d66903-13be-4a83-be6e-e12e0dc83134_crvssla_group_sla-DB-lin --type SGAS_IV --checkpoint-id 12791757
+strisores-cli create-test-failover-job --organization-id 58d66903-13be-4a83-be6e-e12e0dc83134 --group-id 58d66903-13be-4a83-be6e-e12e0dc83134_crvssla_group_sla-DB-win --type SGAS_IV --checkpoint-id 12791757
+strisores-cli create-test-failover-job --organization-id 58d66903-13be-4a83-be6e-e12e0dc83134 --group-id 58d66903-13be-4a83-be6e-e12e0dc83134_crvssla_group_sla-Multi-Nics --type SGAS_IV --checkpoint-id 12791757
+strisores-cli create-test-failover-job --organization-id 58d66903-13be-4a83-be6e-e12e0dc83134 --group-id 58d66903-13be-4a83-be6e-e12e0dc83134_crvssla_group_sla-Plain-lin --type SGAS_IV --checkpoint-id 12791757
+strisores-cli create-test-failover-job --organization-id 58d66903-13be-4a83-be6e-e12e0dc83134 --group-id 58d66903-13be-4a83-be6e-e12e0dc83134_crvssla_group_sla-Plain-win --type SGAS_IV --checkpoint-id 12791757
+
+################### GET Test Fafilover status
+strisores-cli get-failover-job-status --organization-id 58d66903-13be-4a83-be6e-e12e0dc83134 --group-id 58d66903-13be-4a83-be6e-e12e0dc83134_crvssla_group_sla-AD --failover-job-id 796c1466-c6f0-448b-9aea-2c1b4a3704d6
+strisores-cli get-failover-job-status --organization-id 58d66903-13be-4a83-be6e-e12e0dc83134 --group-id 58d66903-13be-4a83-be6e-e12e0dc83134_crvssla_group_sla-DB-lin --failover-job-id 44bfae19-5aa6-435a-af93-e001601abb56
+strisores-cli get-failover-job-status --organization-id 58d66903-13be-4a83-be6e-e12e0dc83134 --group-id 58d66903-13be-4a83-be6e-e12e0dc83134_crvssla_group_sla-DB-win --failover-job-id dd43349a-6764-419f-b725-7886210ecce8
+strisores-cli get-failover-job-status --organization-id 58d66903-13be-4a83-be6e-e12e0dc83134 --group-id 58d66903-13be-4a83-be6e-e12e0dc83134_crvssla_group_sla-Multi-Nics --failover-job-id ef114795-1d94-488b-8a7b-c3a489bc4827
+strisores-cli get-failover-job-status --organization-id 58d66903-13be-4a83-be6e-e12e0dc83134 --group-id 58d66903-13be-4a83-be6e-e12e0dc83134_crvssla_group_sla-Plain-lin --failover-job-id c4fbd2cf-fa73-4bf6-80ac-cbeb1ec6098f
+strisores-cli get-failover-job-status --organization-id 58d66903-13be-4a83-be6e-e12e0dc83134 --group-id 58d66903-13be-4a83-be6e-e12e0dc83134_crvssla_group_sla-Plain-win --failover-job-id ac0ce331-d7a2-41b1-b4c5-ab21374c9a30
+
+################### VM recovery settings after failover
+strisores-cli get-vm-recovery-status  --organization-id 58d66903-13be-4a83-be6e-e12e0dc83134
+
+############## List check points
+strisores-cli list-checkpoints --organization-id 58d66903-13be-4a83-be6e-e12e0dc83134 --group-id 58d66903-13be-4a83-be6e-e12e0dc83134_crvssla_group_sla-AD  --year 2019 --month 04 --day 08 --hour 11 --minute 50
+## ALL checkpoint of CG
+strisores-cli list-checkpoints --organization-id 58d66903-13be-4a83-be6e-e12e0dc83134 --group-id 58d66903-13be-4a83-be6e-e12e0dc83134_crvssla_group_sla-AD
+
+##########
+12791749  Tue, 09 Apr 2019 13:31:16
+12791753  Tue, 09 Apr 2019 13:31:21
+12791757  Tue, 09 Apr 2019 13:31:26
+
+###########
+58d66903-13be-4a83-be6e-e12e0dc83134_crvssla_group_sla-AD                        
+
+58d66903-13be-4a83-be6e-e12e0dc83134_crvssla_group_sla-DB-lin                    
+58d66903-13be-4a83-be6e-e12e0dc83134_crvssla_group_sla-DB-win                    
+58d66903-13be-4a83-be6e-e12e0dc83134_crvssla_group_sla-Multi-Nics               
+58d66903-13be-4a83-be6e-e12e0dc83134_crvssla_group_sla-Plain-lin 
+58d66903-13be-4a83-be6e-e12e0dc83134_crvssla_group_sla-Plain-win 

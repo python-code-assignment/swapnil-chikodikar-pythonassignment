@@ -1,0 +1,57 @@
+Load cdr for protected group
+data for this will be given from -> list unprotected vms
+-> network, Database, -> list cloud-resources
+Folder -> from vcenter (crvs_) starts with
+policy->list policies
+profile -> list profiles (it is combination of 2 sites source site and dest site)
+
+################ DB
+docker -H tcp://cbn2-svc-ng1:2375 exec -it Aves-DB /bin/bash 
+admin123
+
+#########load cdr
+[root@aves-qa qamedia]# docker cp cdrQAforvmware.xlsm StrisoresCLI:/
+
+[root@aves-qa qamedia]# docker exec -it StrisoresCLI /bin/bash
+
+strisores-cli load-cdr --organization-id d21e73fa-e366-4409-a1b1-65c4a9f1ea93 --profile-id 2e198e30-3a56-4de3-8c3f-74d14c647327 --file-path /cdrQAforvmware.xlsm --verbose true --debug true
+FOR HPC LAB SLA
+ strisores-cli load-cdr --organization-id 58d66903-13be-4a83-be6e-e12e0dc83134 --profile-id dfda0a60-d436-47e0-a18c-3144007771d2 --file-path /cdr_HPC_p8u8-Ravi.xlsm --verbose true --debug true
+
+
+#################create protected group
+strisores-cli protect-group --organization-id d21e73fa-e366-4409-a1b1-65c4a9f1ea93 --staging-id 40761
+# strisores-cli get-workflow-execution-status --execution-id 3958ce2c-da34-4282-a59e-ee679f53a15e
+
+&&&&&&&&&&&&&&&&&create Boot group and NIC mappings
+strisores-cli create-recovery-settings --organization-id d21e73fa-e366-4409-a1b1-65c4a9f1ea93 --boot-group-staging-id 40790 --nic-mapping-staging-id 40798
+strisores-cli get-recovery-execution-status --execution-id 7db31063-fd5a-4896-8861-b63deedd3a64
+
+#################### LOGS
+docker -H tcp://cbn2-svc-ng1:2375 logs -f Afroaves 
+
+###################Get VM Network details
+strisores-cli get-vms-network-details --organization-id d21e73fa-e366-4409-a1b1-65c4a9f1ea93 --group-id d21e73fa-e366-4409-a1b1-65c4a9f1ea93_yt8nprod_group_QA-auto
+
+&&&&&&&&&&&&&&&&&&Create Failover
+strisores-cli create-test-failover-job --organization-id d21e73fa-e366-4409-a1b1-65c4a9f1ea93 --group-id d21e73fa-e366-4409-a1b1-65c4a9f1ea93_yt8nprod_group_QA-auto --type SGAS_IV
+strisores-cli get-failover-job-status --organization-id d21e73fa-e366-4409-a1b1-65c4a9f1ea93 --failover-job-id 7c691c7b-f507-4460-84bb-8270a579b5eb
+
+##########################Stop Test failover
+strisores-cli stop-failover --organization-id d21e73fa-e366-4409-a1b1-65c4a9f1ea93 --group-id d21e73fa-e366-4409-a1b1-65c4a9f1ea93_yt8nprod_group_QA-auto  --failover-job-id 7c691c7b-f507-4460-84bb-8270a579b5eb
+
+###Delete recovery settings and unprotect group with same ##Staging id of consistency group
+##Delete recovery settings
+strisores-cli delete-recovery-settings --organization-id d21e73fa-e366-4409-a1b1-65c4a9f1ea93 --staging-id 40872
+##Unprotect Group
+ strisores-cli unprotect-group --organization-id d21e73fa-e366-4409-a1b1-65c4a9f1ea93 --staging-id 40872
+strisores-cli get-workflow-execution-status --execution-id ba28dfae-7c5b-4a6a-99df-6bc20b3fc7cc
+
+########################### Get CHECKPOINTS
+
+################ Delete recovery settings from API
+login to ZCM via RDP -> postman
+#### delete with job id then recovery settings and CG will be deleted
+http://cr-vs.oamp.sgns.net:8586/afroaves/v1/organizations/58d66903-13be-4a83-be6e-e12e0dc83134/jobs/53d0d603-ab39-4160-b632-231b3a18907e
+##### Deleted with CG ID then DB data will be deleted
+http://cr-vs.oamp.sgns.net:8586/afroaves/v1/organizations/58d66903-13be-4a83-be6e-e12e0dc83134/consistency_groups/58d66903-13be-4a83-be6e-e12e0dc83134_crvssla_group_sla-DB-lin/
