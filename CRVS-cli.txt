@@ -55,3 +55,6 @@ login to ZCM via RDP -> postman
 http://cr-vs.oamp.sgns.net:8586/afroaves/v1/organizations/58d66903-13be-4a83-be6e-e12e0dc83134/jobs/53d0d603-ab39-4160-b632-231b3a18907e
 ##### Deleted with CG ID then DB data will be deleted
 http://cr-vs.oamp.sgns.net:8586/afroaves/v1/organizations/58d66903-13be-4a83-be6e-e12e0dc83134/consistency_groups/58d66903-13be-4a83-be6e-e12e0dc83134_crvssla_group_sla-DB-lin/
+
+xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+--organization-id ce184dbf-d2cd-4de6-a2bc-20b894109eb2 --group-ids ce184dbf-d2cd-4de6-a2bc-20b894109eb2_ntx8-prd_group_QA_U4CG1
